@@ -1,0 +1,20 @@
+event_date,nearest_trading_date,event_name,category,price_before,price_on_or_after_event,price_after,pre_to_post_change_pct,event_to_post_change_pct,window_observations_before,window_observations_after
+1990-08-02,1990-08-02,Iraq invades Kuwait,Geopolitical conflict,18.73,22.25,25.9,38.28083288841431,16.40449438202247,5,5
+1997-07-02,1997-07-02,Asian Financial Crisis begins in Thailand,Economic shock,17.65,18.83,18.0,1.9830028328611915,-4.407859798194358,5,5
+2001-09-11,2001-09-11,September 11 attacks,Geopolitical shock,26.27,29.12,27.54,4.834411876665401,-5.425824175824179,5,5
+2003-03-19,2003-03-19,Operation Iraqi Freedom begins,Geopolitical conflict,34.16,28.4,25.98,-23.94613583138172,-8.52112676056337,5,5
+2005-08-29,2005-08-29,Hurricane Katrina makes Gulf Coast landfall,Supply disruption / natural disaster,65.87,64.77,64.16,-2.596022468498571,-0.9417940404508274,5,5
+2008-09-15,2008-09-15,Lehman Brothers files for bankruptcy,Economic shock,101.08,90.45,100.43,-0.6430550059358886,11.033720287451644,5,5
+2011-02-22,2011-02-22,Libyan conflict escalates,Geopolitical conflict,103.12,106.82,113.34,9.910783553141966,6.103725894027345,5,5
+2012-07-01,2012-07-02,EU embargo on Iranian oil fully enters into force,Economic sanctions,88.69,95.28,99.15,11.793888826248743,4.06171284634762,5,5
+2014-11-27,2014-11-28,OPEC maintains 30 million b/d production ceiling,OPEC policy,77.61,71.89,68.0,-12.382424945239013,-5.411044651550978,5,5
+2016-11-30,2016-11-30,OPEC Vienna production agreement,OPEC policy,46.54,47.95,51.9,11.51697464546626,8.23774765380605,5,5
+2018-05-08,2018-05-08,United States announces withdrawal from JCPOA,Economic sanctions,75.92,74.16,78.94,3.9778714436248697,6.445523193096014,5,5
+2019-09-14,2019-09-16,Attack on Abqaiq and Khurais facilities,Supply disruption / geopolitical,63.99,68.42,64.66,1.0470385997812137,-5.495469161064026,5,5
+2020-03-11,2020-03-11,WHO characterizes COVID-19 as a pandemic,Global economic shock,51.86,34.45,26.93,-48.07173158503664,-21.82873730043542,5,5
+2020-04-12,2020-04-14,OPEC+ agrees historic production adjustment,OPEC+ policy,24.33,21.74,9.12,-62.5154130702836,-58.04967801287948,5,5
+2020-04-20,2020-04-20,WTI futures trade below zero,Market structure / demand shock,20.23,17.36,15.17,-25.012357884330207,-12.615207373271886,5,5
+2021-07-18,2021-07-19,OPEC+ approves gradual monthly production increases,OPEC+ policy,76.77,69.33,74.79,-2.579132473622492,7.875378623972318,5,5
+2022-02-24,2022-02-24,Russia launches full-scale invasion of Ukraine,Geopolitical conflict,95.28,101.29,115.36,21.074727120067173,13.890808569454038,5,5
+2022-03-08,2022-03-08,United States bans imports of Russian energy,Economic sanctions,110.93,133.18,105.14,-5.219507797710277,-21.054212344195832,5,5
+2022-10-05,2022-10-05,OPEC+ announces 2 million b/d production cut,OPEC+ policy,89.55,94.35,93.44,4.343941931881634,-0.9644939056703716,5,5

@@ -1,0 +1,5 @@
+series,test,statistic,p_value,lags,observations,null_hypothesis,decision_at_5pct
+Price,ADF,-1.9938560113924688,0.28927350489340226,29,8981,Unit root / non-stationary,Fail to reject null
+Price,KPSS,9.558800416712558,0.01,57,9011,Level-stationary,Reject null
+Log return,ADF,-16.4271134944858,2.498580161143372e-29,28,8981,Unit root / non-stationary,Reject null
+Log return,KPSS,0.03427403590756764,0.1,14,9010,Level-stationary,Fail to reject null
