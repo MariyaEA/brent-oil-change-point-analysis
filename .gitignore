@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and OS
+.DS_Store
+.idea/
+*.swp
+
+# Generated model artifacts and large raw files
+models/
+artifacts/
+*.nc
+*.pkl
+*.joblib
+
+data/raw/*
+!data/raw/BrentOilPrices.csv
+!data/raw/.gitkeep
+
+# Frontend/backend dependency directories for later tasks
+node_modules/
+frontend/build/
+frontend/dist/
+backend/__pycache__/

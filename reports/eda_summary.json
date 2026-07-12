@@ -1,0 +1,13 @@
+{
+  "observations": 9011,
+  "start_date": "1987-05-20",
+  "end_date": "2022-11-14",
+  "mean_price": 48.4208,
+  "median_price": 38.57,
+  "max_price": 143.95,
+  "max_price_date": "2008-07-03",
+  "min_price": 9.1,
+  "min_price_date": "1998-12-10",
+  "highest_rolling_volatility_date": "2020-05-06",
+  "highest_rolling_volatility": 2.9735
+}
