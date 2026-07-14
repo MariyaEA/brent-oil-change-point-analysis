@@ -1,0 +1,30 @@
+{
+  "tau_index_median": 63,
+  "change_point_date": "2014-12-01",
+  "change_point_date_hdi_low": "2014-11-28",
+  "change_point_date_hdi_high": "2014-12-04",
+  "mu_before_mean": 88.24329705989452,
+  "mu_after_mean": 56.17902746795169,
+  "absolute_change_usd": -32.064269591942825,
+  "percent_change": -36.33620984286141,
+  "probability_after_lower": 1.0,
+  "sigma_mean": 6.96685794234443,
+  "posterior_draws_saved": 4000,
+  "hdi_probability": 0.94,
+  "model_window_start": "2014-09-01",
+  "model_window_end": "2015-03-31",
+  "observations": 147,
+  "draws_per_chain": 5000,
+  "tuning_steps_per_chain": 2000,
+  "chains": 4,
+  "maximum_r_hat": 1.0017,
+  "minimum_bulk_ess": 2891.0802,
+  "model_description": "Single mean-shift Normal model with a DiscreteUniform tau and pm.math.switch. This is a transparent baseline for one targeted window.",
+  "nearest_event": {
+    "event_date": "2014-11-27",
+    "event_name": "OPEC maintains 30 million b/d production ceiling",
+    "event_category": "OPEC policy",
+    "distance_days": -4,
+    "interpretation_guardrail": "Temporal proximity supports an event-association hypothesis; it does not establish that the event caused the structural break."
+  }
+}
