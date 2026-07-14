@@ -1,18 +1,64 @@
 # Brent Oil Change Point Analysis
 
-A time-series project for identifying structural breaks in Brent crude oil prices and examining how those breaks align with major geopolitical, OPEC/OPEC+, sanctions, supply, and economic events.
+A complete time-series analysis and decision-intelligence project for detecting structural breaks in Brent crude oil prices and examining how those breaks align with major geopolitical, OPEC/OPEC+, sanctions, supply, and economic events.
 
-The work is framed for **Birhan Energies**, an energy-sector consultancy supporting investors, policymakers, and energy companies. The repository currently contains the complete Week 10 interim foundation: analysis workflow, event data, exploratory analysis, time-series diagnostics, change point model explanation, reproducible outputs, and tests.
+The project is framed for **Birhan Energies**, an energy-sector consultancy supporting investors, policymakers, analysts, and energy companies.
 
-## Interim scope
+![Birhan Energies dashboard](reports/dashboard/dashboard_desktop.png)
 
-- Validates and cleans the daily Brent price dataset.
-- Documents a complete workflow from loading to stakeholder insight.
-- Provides a sourced event catalogue with 19 major events.
-- Visualizes raw prices, daily log returns, rolling volatility, and event context.
-- Tests stationarity using ADF and KPSS.
-- Explains Bayesian change point outputs and limitations.
-- Separates reusable code, scripts, notebooks, tests, reports, and documentation.
+## Project objectives
+
+1. Identify key events and structural changes that affected Brent oil prices.
+2. Quantify before/after price regimes using Bayesian statistical modeling.
+3. Deliver clear, interactive insights for stakeholder decision-making.
+
+The analysis treats event timing and detected structural breaks as **associations**. Temporal alignment does not by itself establish causal impact.
+
+## Final result
+
+The targeted PyMC model analyzes the 1 September 2014–31 March 2015 market window and identifies:
+
+| Output | Estimate |
+|---|---:|
+| Posterior median change date | **1 December 2014** |
+| Approximate 94% date interval | **28 Nov–4 Dec 2014** |
+| Mean price before | **$88.24/bbl** |
+| Mean price after | **$56.18/bbl** |
+| Estimated level shift | **−36.3%** |
+| Maximum R-hat | **1.0017** |
+| Nearest researched event | **OPEC maintains 30 million b/d ceiling, 27 Nov 2014** |
+
+The date alignment is consistent with continued oversupply expectations after the OPEC decision, but it is not proof that the decision alone caused the price decline.
+
+## What is included
+
+### Task 1 — Analysis foundation
+
+- Reproducible workflow from loading to insight generation
+- Structured catalogue of 19 geopolitical, OPEC/OPEC+, sanctions, supply, and economic events
+- Explicit assumptions and correlation-versus-causation limitations
+- Raw price and log-return visualizations
+- Trend, ADF/KPSS stationarity, and volatility analysis
+- Reusable loading, feature, diagnostic, and plotting modules
+
+### Task 2 — Bayesian change point modeling
+
+- PyMC switch-point model with `tau`, `mu_before`, `mu_after`, and `sigma`
+- `pm.math.switch` likelihood construction
+- Four-chain MCMC sampling with convergence diagnostics
+- Trace, tau-posterior, parameter-posterior, and posterior-predictive plots
+- Quantified before/after price shift
+- Written event association with an interpretation guardrail
+
+### Task 3 — Flask/React dashboard
+
+- Flask endpoints for historical prices, change-point results, events, and event-window movements
+- React + Vite + Recharts interface
+- Date range, resolution, and event-category filtering
+- Event overlays, change-point markers, and event highlighting
+- Responsive desktop and mobile design
+- API and frontend error handling
+- Committed dashboard screenshots
 
 ## Repository structure
 
@@ -21,39 +67,51 @@ The work is framed for **Birhan Energies**, an energy-sector consultancy support
 ├── .github/
 │   ├── ISSUE_TEMPLATE/task.md
 │   └── workflows/unittests.yml
-├── .vscode/settings.json
+├── dashboard/
+│   ├── backend/
+│   │   ├── app.py
+│   │   └── requirements.txt
+│   ├── frontend/
+│   │   ├── src/components/
+│   │   ├── src/services/
+│   │   ├── package.json
+│   │   └── vite.config.js
+│   └── README.md
 ├── data/
 │   ├── events/oil_market_events.csv
-│   ├── raw/BrentOilPrices.csv
-│   └── README.md
+│   └── raw/BrentOilPrices.csv
 ├── docs/
 │   ├── analysis_workflow.md
 │   ├── assumptions_and_limitations.md
-│   └── change_point_model_notes.md
+│   ├── change_point_model_notes.md
+│   └── git_workflow.md
 ├── notebooks/
 │   ├── 01_task1_eda.ipynb
-│   └── README.md
+│   └── 02_task2_bayesian_change_point.ipynb
 ├── reports/
+│   ├── dashboard/
 │   ├── figures/
-│   ├── eda_summary.json
-│   ├── event_window_summary.csv
-│   ├── interim_report.md
-│   └── stationarity_results.csv
+│   ├── model/
+│   ├── final_report.md
+│   └── interim_report.md
 ├── scripts/
+│   ├── generate_dashboard_screenshots.py
+│   ├── run_change_point.py
 │   └── run_eda.py
 ├── src/
+│   ├── change_point.py
 │   ├── data_loader.py
 │   ├── diagnostics.py
 │   ├── features.py
 │   └── plotting.py
 ├── tests/
-├── .gitignore
-├── pytest.ini
 ├── requirements.txt
 └── README.md
 ```
 
-## Setup
+## Python setup
+
+Python 3.11 is recommended.
 
 ```bash
 python3 -m venv .venv
@@ -62,54 +120,116 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-On Windows, activate the environment with:
+On Windows:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-## Run the analysis
-
-Open the executed notebook:
-
-```bash
-jupyter lab notebooks/01_task1_eda.ipynb
-```
-
-Reproduce all interim figures and tables from the command line:
+## Run Task 1 EDA
 
 ```bash
 python scripts/run_eda.py
+jupyter lab notebooks/01_task1_eda.ipynb
 ```
 
-Run the tests:
+## Run Task 2 Bayesian model
+
+The fully executed notebook is committed:
 
 ```bash
-pytest
+jupyter lab notebooks/02_task2_bayesian_change_point.ipynb
 ```
 
-## Data
+Reproduce the saved model artifacts and figures:
 
-The challenge-provided Brent CSV contains **9,011 observations from 20 May 1987 to 14 November 2022**. Prices are recorded in U.S. dollars per barrel. The source file uses two date formats, and the loader parses both explicitly.
+```bash
+python scripts/run_change_point.py
+```
 
-The researched event file includes its source name and URL in every row. It spans geopolitical conflicts, financial crises, sanctions, natural disasters, OPEC/OPEC+ policy decisions, and the COVID-19 demand shock.
+The command saves:
 
-## Initial findings
+- `reports/model/mcmc_summary.csv`
+- `reports/model/posterior_samples.csv`
+- `reports/model/change_point_results.json`
+- model diagnostic and posterior figures in `reports/figures/`
 
-- Raw Brent prices show persistent shifts in level and are not stationary under the combined ADF/KPSS evidence.
-- Daily log returns are stationary and are therefore more suitable for short-run return modeling.
-- Volatility clusters strongly rather than remaining constant; the most extreme rolling volatility occurs during the 2020 oil-market disruption.
-- The full 1987-2022 period contains several regimes, so a one-change-point model should be treated as a baseline and tested for robustness.
+## Run the dashboard
 
-Detailed results are in the [executed EDA notebook](notebooks/01_task1_eda.ipynb) and [interim report](reports/interim_report.md).
+### Terminal 1 — Flask API
 
-## Interpretation guardrail
+```bash
+python dashboard/backend/app.py
+```
 
-Change point detection identifies a structural shift in the time series. Matching that date to a researched event creates a plausible hypothesis, not proof of causal impact. The analysis reports temporal alignment, parameter uncertainty, competing explanations, and model limitations.
+### Terminal 2 — React frontend
 
-## Next phase
+```bash
+cd dashboard/frontend
+cp .env.example .env
+npm install
+npm run dev
+```
 
-The next branch will implement Bayesian change point estimation in PyMC, assess convergence, quantify before/after parameter changes, and connect posterior change dates to the event catalogue. The final branch will expose results through a Flask API and an interactive React dashboard.
+Open `http://localhost:5173`.
+
+Detailed instructions and API documentation are in [`dashboard/README.md`](dashboard/README.md).
+
+## API endpoints
+
+| Endpoint | Description |
+|---|---|
+| `/api/health` | Backend health |
+| `/api/prices` | Filtered historical prices |
+| `/api/events` | Filtered researched events |
+| `/api/change-points` | Posterior change-point result |
+| `/api/event-correlations` | Descriptive event-window movements |
+| `/api/summary` | Headline indicators |
+
+## Testing
+
+```bash
+pytest -q
+```
+
+The repository contains data-loader, feature-engineering, change-point helper, and Flask API tests.
+
+Build the frontend:
+
+```bash
+cd dashboard/frontend
+npm ci
+npm run build
+```
+
+GitHub Actions runs both the Python tests and the React production build on pushes and pull requests.
+
+## Git workflow
+
+The intended branch strategy is:
+
+- `task-1-foundation-eda`
+- `task-2-bayesian-change-point`
+- `task-3-dashboard`
+- `final-documentation`
+- `main`
+
+Each task branch should be merged to `main` through a pull request after CI passes. A detailed commit and PR plan is available in [`docs/git_workflow.md`](docs/git_workflow.md).
+
+## Key limitations
+
+- A single switch point cannot represent every oil-market regime.
+- The baseline Normal model simplifies heavy tails and volatility clustering.
+- Results depend partly on the selected event window.
+- Daily data do not represent intraday reactions or market anticipation.
+- Descriptive event windows and date matches are not causal estimates.
+- Nominal prices are not inflation-adjusted.
+
+## Reports
+
+- [Interim report](reports/interim_report.md)
+- [Final analytical report](reports/final_report.md)
+- [Bayesian result interpretation](reports/model/change_point_interpretation.md)
 
 ## Author
 
