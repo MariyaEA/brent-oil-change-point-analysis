@@ -1,8 +1,7 @@
-# Scripts
+# Reproducible scripts
 
-`run_eda.py` reproduces the interim figures and tabular outputs without opening Jupyter.
-Run it from the repository root:
+- `run_eda.py` regenerates Task 1 figures, stationarity tables, event-window summaries, and EDA metadata.
+- `run_change_point.py` fits the PyMC switch model and regenerates model summaries, posterior samples, interpretations, and figures.
+- `generate_dashboard_screenshots.py` creates deterministic report screenshots from the saved repository data and model outputs.
 
-```bash
-python scripts/run_eda.py
-```
+Run scripts from the repository root so relative project paths remain consistent.
